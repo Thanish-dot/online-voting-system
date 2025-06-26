@@ -1,0 +1,24 @@
+{% extends 'pollzone/base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+{% block body_class %}bg-login{% endblock %}  
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow p-4" style="width: 100%; max-width: 350px; border-radius: 15px;">
+        <h2 class="text-center mb-4">Login</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" class="form-control mb-3" placeholder="Username" required>
+        <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+</div>
+{% endblock %}
+

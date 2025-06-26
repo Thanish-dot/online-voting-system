@@ -1,0 +1,49 @@
+{% extends 'pollzone/base.html' %}
+{% load static %}
+
+{% block title %}Voting Criteria{% endblock %}
+{% block body_class %}bg-home{% endblock %}
+
+{% block content %}
+<div class="container my-5 text-white">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Voting Criteria</h1>
+        <p class="lead">Know the rules before you vote</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="p-4 bg-dark bg-opacity-75 rounded shadow">
+                <h3 class="text-info">Eligibility</h3>
+                <ul>
+                    <li>You can be a registered user.</li>
+                    <li>Each voters can vote by using original proof.</li>
+                    <li>Voting is permitted only for individuals who are 18 years old or above.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="p-4 bg-dark bg-opacity-75 rounded shadow">
+                <h3 class="text-info">Voting Instructions</h3>
+                <ol>
+                    <li>Login using your registered credentials.</li>
+                    <li>Click on “View Candidates.”</li>
+                    <li>Click “Vote Now” under your preferred candidate.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="p-4 bg-dark bg-opacity-75 rounded shadow">
+                <h3 class="text-info">Rules & Guidelines</h3>
+                <p>
+                    Any attempt to manipulate or perform duplicate voting is strictly prohibited. 
+                    Admins reserve the right to disqualify any user who violates the fair voting policy.
+                    Please ensure your vote reflects your honest opinion.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

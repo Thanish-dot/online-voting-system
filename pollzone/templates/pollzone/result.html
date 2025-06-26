@@ -1,0 +1,35 @@
+{% extends 'pollzone/base.html' %}
+{% load static %}
+
+{% block title %}Results{% endblock %}
+{% block body_class %}bg-result{% endblock %}
+
+{% block content %}
+<div class="container text-center my-5">
+    <h1 class="display-4 mb-4">Voting Results</h1>
+    <p class="lead mb-5">Here are the current results of the poll</p>
+
+    <div class="row justify-content-center">
+        {% for candidate in candidates %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 p-4 bg-light text-dark shadow">
+                {% if candidate.photo %}
+                    <img src="{{ candidate.photo.url }}" alt="{{ candidate.name }}" class="candidate-img mb-3">
+                {% else %}
+                    <img src="{% static 'images/default.jpg' %}" alt="{{ candidate.name }}" class="candidate-img mb-3">
+                {% endif %}
+                
+                <h4 class="fw-bold">{{ candidate.name }}</h4>
+                <p class="text-muted">{{ candidate.position }}</p>
+                <div class="progress mb-2" style="height: 20px;">
+                    <div class="progress-bar bg-success"role="progressbar"style="width: {{ candidate.percentage }}%;"aria-valuenow="{{ candidate.percentage }}"aria-valuemin="0"aria-valuemax="100">{{ candidate.percentage }}%
+                    </div>
+                </div>
+                <p class="mb-0">{{ candidate.votes }} votes</p>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
