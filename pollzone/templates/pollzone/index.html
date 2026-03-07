@@ -1,0 +1,24 @@
+{% extends 'pollzone/base.html' %}
+{% load static %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block body_class %}bg-index{% endblock %}
+
+{% block content %}
+<div class="index-wrapper text-center text-white">
+    <div class="index-content">
+        <h2 class="index-heading display-3 fw-bold">Welcome To Pollzone</h2>
+        <p class="index-subheading fs-4">College Voting System</p>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-4 px-5">View Available Polls</a>
+                <div class="mt-4">
+            <a href="{% url 'login' %}" class="btn btn-light btn-lg mx-2 px-4">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-success btn-lg mx-2 px-4">Register</a>
+        </div>
+     </div>
+
+    <div class="top-right-image position-absolute" style="top: 30px; right: 30px;">
+        <img src="{% static 'images/vote-icon.png' %}" alt="Vote Icon" style="width: 80px; height: 80px;">
+    </div>
+</div>
+{% endblock %}

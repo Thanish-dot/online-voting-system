@@ -1,0 +1,83 @@
+{% extends 'pollzone/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block body_class %}bg-home{% endblock %}
+<style>
+  .candidate-role {
+    font-size: 14px; /* Adjust size as needed */
+    color: #666;
+    margin-bottom: 10px;
+}
+
+</style>
+
+{% block content %}
+<div class="card p-4 mb-5">
+    <div class="text-center">
+        <h1 class="display-4 mb-4">Meet the Candidates</h1>
+        <p class="lead">Select your preferred candidate to cast your vote</p>
+    </div>
+
+    <div class="row mt-5">
+        {% for candidate in candidates %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center py-4">
+                    {% if candidate.photo %}
+                        <img src="{{ candidate.photo.url }}" alt="{{ candidate.name }}" class="candidate-img mb-3">
+                    {% else %}
+                        <img src="{% static 'images/default.jpg' %}" alt="No image" class="candidate-img mb-3">
+                    {% endif %}
+                    <h3 class="mb-2">{{ candidate.name }}</h3>
+                    {% if candidate.position %}
+                    <p class="text-muted mb-3">
+                        <i class="fas fa-user-tie me-2"></i>{{ candidate.position }}
+                    </p>
+                    {% endif %}
+                    {% if candidate.bio %}
+                    <div class="candidate-bio mb-4">
+                        <p>{{ candidate.bio|truncatewords:20 }}</p>
+                    </div>
+                    {% endif %}
+                                        <!-- Candidate Paragraph -->
+                    <div class="candidate-bio mb-3">
+                        {% if candidate.name == "Mohammed Thanish" %}
+                    <p class="candidate-role">
+                         <i class="fas fa-user-tie me-2"></i>Role: Head of Digital Initiatives
+                             </p>
+
+                            <p> Bio: A visionary leader focused on digital transformation. Thanish emphasizes transparency, accountability, and boosting innovation through AI integration. He aims to implement tech-driven class management solutions.</p>
+                        {% elif candidate.name == "Suhail" %}    
+                        <p class="candidate-role">
+                         <i class="fas fa-user-tie me-2"></i>Role: Strategic Planning Lead
+                             </p>
+                            <p> Bio: A strategist who values inclusive growth. Suhail aims to create a feedback-driven system to enhance student participation and trust in class decisions. He focuses on improving communication between students and faculty.</p>
+                        {% elif candidate.name == "Bala" %}
+                        <p class="candidate-role">
+                         <i class="fas fa-user-tie me-2"></i>Role: Operations & Events Coordinator
+                         </p>
+                            <p> Bio: Bala brings vast experience managing academic and tech teams. He is passionate about introducing agile workflows and organizing collaborative events that benefit all classmates.</p>
+                        {% elif candidate.name == "Rahul" %}
+                        <p class="candidate-role">
+                         <i class="fas fa-user-tie me-2"></i>Role:  Class Welfare & Discipline Coordinator
+                         </p>
+                            <p> Bio: Rahul is dedicated to ensuring a positive and disciplined class environment. He focuses on resolving student concerns, maintaining order, and promoting fairness and mutual respect among classmates. Rahul believes in leading by example and upholding class values.</p>
+                        {% endif %}
+                    </div>
+
+                    <form method="post" action="{% url 'vote' candidate.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-vote px-4">
+                            <i class="fas fa-check-circle me-2"></i>Vote Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,32 @@
+{% extends 'pollzone/base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+{% block body_class %}bg-register{% endblock %}  
+
+{% block content %}
+
+ <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow p-4" style="width: 100%; max-width: 380px; border-radius: 15px;">
+        <h2 class="text-center mb-4">Register</h2>
+ {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" class="form-control mb-3" placeholder="Username" required>
+        <input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
+        <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+        <input type="password" name="confirm_password" class="form-control mb-3" placeholder="Confirm Password" required>
+        <button type="submit" class="btn btn-success">Sign Up</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+

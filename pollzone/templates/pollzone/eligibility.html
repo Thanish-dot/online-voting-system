@@ -1,0 +1,59 @@
+{% extends 'pollzone/base.html' %}
+{% load static %}
+
+{% block title %}Eligibility{% endblock %}
+{% block body_class %}bg-eligibility{% endblock %}
+
+{% block content %}
+<style>
+    body.bg-eligibility {
+        background-image: url("{% static 'images/bg-eligibility.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .card-overlay {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        margin: auto;
+    }
+        h1.display-4 {
+        color: #ffffff; /* bright white */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* adds shadow for contrast */
+        background-color:skyblue;
+        padding: 5px;
+        
+        font-weight: 600;
+    }
+
+</style>
+
+<div class="container text-center my-5">
+    <h1 class="display-4 mb-4">Check Eligibility</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="number" name="age" placeholder="Enter your age" class="form-control text-center" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Check</button>
+    </form>
+
+    {% if result %}
+        {% if 'eligible' in result %}
+            <div class="alert alert-success mt-4">
+                {{ result }}
+            </div>
+        {% else %}
+            <div class="alert alert-danger mt-4">
+                {{ result }}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+
+
