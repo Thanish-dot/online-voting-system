@@ -24,11 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['online-voting-system-zycc.onrender.com', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','http://localhost:8000']
+CSRF_TRUSTED_ORIGINS = ['https://online-voting-system-zycc.onrender.com','http://127.0.0.1:8000','http://localhost:8000']
 
 # Application definition
 
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'onlinevoting.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'pollzone', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,  
         'OPTIONS': {
             'context_processors': [
